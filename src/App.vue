@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Bme280Api msg="API BME280" :info="info"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Bme280Api from './components/Bme280Api.vue'
+import axios from 'axios'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Bme280Api
+  },
+  data () {
+    return {
+      info: ""
+    }
+  },
+  mounted () {
+    axios
+      .get('http://localhost:3000/api/bme280')
+      .then(response => (this.info = response.data))
   }
 }
 </script>
