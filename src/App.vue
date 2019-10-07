@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <Bme280Api msg="API BME280" :info="info" :date="date"/>
+    <MainNavbar></MainNavbar>
+    <router-view info="info"></router-view>
+    <p>{{info}}</p>
   </div>
 </template>
 
 <script>
-import Bme280Api from './components/Bme280Api.vue'
 import axios from 'axios'
 import { setInterval } from 'timers';
+import MainNavbar from './components/MainNavbar.vue'
+
 
 export default {
   name: 'app',
   components: {
-    Bme280Api
+    MainNavbar
   },
-  data () {
+  data: function (){
     return {
       info: "",
       date: new Date()
     }
   },
-  mounted () {
+  mounted (){
     this.getBme280()
     setInterval(() => this.getBme280(), 1000)
+    console.log("!!!")
   },
   methods: {
     getBme280() {

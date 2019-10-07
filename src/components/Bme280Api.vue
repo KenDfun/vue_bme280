@@ -1,8 +1,5 @@
 <template>
   <div class="bme280api">
-    <h1>{{ msg }}</h1>
-    <p>{{info}}</p>
-
     <div class="container">
       <p class="date">{{ year }}/{{ month }}/{{ day }} {{hours}}:{{minutes}}.{{seconds}}</p>
       <div class="data280">
@@ -56,6 +53,9 @@ export default {
     seconds() {
       return zeroPadding(this.date.getSeconds(), 2)
     },
+  },
+  mounted: function(){
+    console.log("Bme280")
   }
 }
 </script>
@@ -80,6 +80,7 @@ a {
 .container {
   background-color: #3a4a5e;
   padding: 2%;
+  margin-top: 30px;
 }
  
  
